@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Task</title>
+</head>
+<style>
+          form{
+                    display: flex;
+                    margin-left:20%;
+          }
+          button{
+                    width:100px;
+                    height:5vh;
+                    margin-top: 2%;
+                    margin-left: 2%;
+                    background: black;
+                    border: none;
+                    color:white
+          }
+          div{
+                    width:50%;
+                    height:50vh;
+                    /* border:1px solid; */
+                    position: absolute;
+                    left:10%;
+                    font-size: 2em;;
+                    top:20%;
+                    font-weight: bold;
+                    padding-left:10%;
+                    color:#323232
+          }
+          
+</style>
+<body>
+          <!-- <form action="" method="GET"> -->
+                    <h1>JSON AND AJAX</h1>
+                    <BUTTON onclick="clickk">GET Data</BUTTON>
+                    <div></div>
+          <!-- </form> -->
+</body>
+<script>
+          var pageCounter =1 ;
+          var div = document.querySelector('div');
+          var btn =document.querySelector('button');
+          var xml = new XMLHttpRequest()
+          xml.onload=function(){
+                    console.log(xml.response)
+                    var get= JSON.parse(xml.response)
+                    console.log(get)
+                    get.forEach((gets) => {
+                              console.log(gets.name)
+                              div.innerHTML +=`${gets.name} is a cat likes to eat<br>`
+    
+                    });
+          }
+          btn.addEventListener('click', function clickk(){
+                              xml.open('GET',"https://learnwebcode.github.io/json-example/animals-" + pageCounter +".json")
+
+xml.send()
+pageCounter++
+})
+
+</script>
+</html>
